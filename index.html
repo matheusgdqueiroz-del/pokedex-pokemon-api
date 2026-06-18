@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="theme-color" content="#05060c">
+    <title>DEX REACTOR</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body data-type="none">
+    <div class="aurora" aria-hidden="true">
+        <span class="aurora-blob blob-a"></span>
+        <span class="aurora-blob blob-b"></span>
+        <span class="aurora-blob blob-c"></span>
+    </div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <div class="boot" id="boot" aria-hidden="true">
+        <div class="boot-core"></div>
+        <p class="boot-text">INICIANDO REATOR</p>
+    </div>
+
+    <main class="reactor">
+        <!-- ============ TOPO ============ -->
+        <header class="bar">
+            <div class="brand">
+                <span class="brand-lens" aria-hidden="true"><i></i></span>
+                <span class="brand-name">DEX<b>REACTOR</b></span>
+            </div>
+
+            <form class="omni" id="searchForm" role="search">
+                <span class="omni-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </span>
+                <input id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Escanear por nome ou nº…">
+                <button class="omni-clear" id="searchClear" type="button" hidden aria-label="Limpar">×</button>
+            </form>
+
+            <div class="bar-right">
+                <div class="dial" title="Capturados / Registrados">
+                    <span class="dial-cap" id="favoriteCount">0</span>
+                    <span class="dial-sep">/</span>
+                    <span class="dial-seen" id="seenCount">0</span>
+                </div>
+                <span class="link-led" id="statusLed" title="PokéAPI"></span>
+                <button class="ghost-btn" id="soundToggle" type="button" aria-pressed="true" title="Áudio">
+                    <svg class="ico-on" viewBox="0 0 24 24" fill="none"><path d="M4 9v6h4l5 4V5L8 9H4Z" fill="currentColor"/><path d="M16 9a3 3 0 0 1 0 6M18.5 7a6 6 0 0 1 0 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    <svg class="ico-off" viewBox="0 0 24 24" fill="none"><path d="M4 9v6h4l5 4V5L8 9H4Z" fill="currentColor"/><path d="m16 9 5 6M21 9l-5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Trilho de tipos -->
+        <div class="orbits" id="typeOrbits" aria-label="Filtrar por tipo">
+            <button class="orb orb-all is-on" data-type="" title="Todos">∞</button>
+            <button class="orb orb-fav" data-type="__fav" title="Capturados">★</button>
+        </div>
+
+        <!-- ============ PALCO ============ -->
+        <section class="stage" id="stage">
+            <canvas class="stage-fx" id="stageFx" aria-hidden="true"></canvas>
+            <span class="ghost-num" id="ghostNum">0000</span>
+
+            <!-- HUD esquerdo: identidade -->
+            <aside class="hud hud-left" id="hudLeft"></aside>
+
+            <!-- Criatura -->
+            <div class="creature-zone">
+                <div class="orbit-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div class="creature" id="creature">
+                    <img id="creatureImg" alt="" draggable="false">
+                    <span class="creature-sweep" aria-hidden="true"></span>
+                </div>
+                <div class="creature-pedestal" aria-hidden="true"></div>
+                <div class="creature-id" id="creatureId">
+                    <div class="cid-types" id="heroTypes"></div>
+                    <h1 class="cid-name" id="heroName">———</h1>
+                    <p class="cid-genus" id="heroGenus"></p>
+                </div>
+                <div class="dock" id="dock"></div>
+            </div>
+
+            <!-- HUD direito: análise -->
+            <aside class="hud hud-right" id="hudRight"></aside>
+        </section>
+
+        <!-- ============ ESTEIRA ============ -->
+        <div class="reel" id="reel">
+            <button class="reel-nav prev" id="reelPrev" type="button" aria-label="Anterior">‹</button>
+            <div class="reel-view" id="reelView">
+                <div class="reel-track" id="reelTrack"></div>
+            </div>
+            <button class="reel-nav next" id="reelNext" type="button" aria-label="Próximo">›</button>
+            <button class="reel-more" id="loadMoreButton" type="button" hidden>+ mais</button>
+        </div>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
